@@ -1,0 +1,66 @@
+
+<div class='card'> <!-- Card Principal -->
+  <div class='card-body'>
+    
+    <h2 class='title'><%= @user.fullname %></h2>
+
+    <div class='columns'>
+      <div class='column is-3'>
+        <div class='card text-center'>
+          <div class='card-body'>
+            <figure class="image is-1by1" style='margin-bottom:15px;'>
+              <%= image_tag('https://via.placeholder.com/150C/', class:'is-rounded') %>
+            </figure>
+
+            <h3>Cancel my account</h3>
+
+            <p>Unhappy? <%= button_to "Cancel my account", cancel_user_registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class:'button is-danger' %></p>
+          </div>
+        </div>
+      </div>
+      <div class='column'>
+        <div class='card'>
+          <div class='card-body'>
+            <%= form_with url: users_backoffice_profile_update_path, method: :put, local: true do |f| %>
+
+              <div class="field">
+                <%= f.label :fullname %><br />
+                <%= f.text_field :fullname, autofocus: true, class:'input', placeholder:'Meu nome completo' %>
+              </div>
+
+              <div class="field">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'input', placeholder:'email@example.com' %>
+              </div>
+
+              <div class="field">
+                <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+                <%= f.password_field :current_password, autocomplete: "current-password", class:'input', placeholder:'Senha atual' %>
+              </div>
+
+              <div class="field">
+                <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+                <%= f.password_field :password, autocomplete: "new-password", class:'input', placeholder:'Nova Senha' %>
+                <% if @minimum_password_length %>
+                  <br />
+                  <em><%= @minimum_password_length %> characters minimum</em>
+                <% end %>
+              </div>
+
+              <div class="field">
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'input', placeholder:'Confirmação de Nova Senha' %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit "Update", class:'button is-primary' %>
+                <%= link_to "Back", users_backoffice_tweets_path, class:'button is-danger' %>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

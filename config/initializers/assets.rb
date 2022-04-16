@@ -13,5 +13,9 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w(
-  users_backoffice.css
+  users_backoffice.css user_devise.css
+)
+
+Rails.application.config.assets.precompile += %w( 
+  placeholder_profile.jpg
 )

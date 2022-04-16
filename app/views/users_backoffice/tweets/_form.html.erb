@@ -12,17 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :declaration %>
-    <%= form.text_area :declaration %>
+    <%= form.label :'What are you thinking ?', class:'label' %>
+    <div class='control'>
+      <%= form.text_area :declaration, class:'textarea' %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
-    <%= link_to 'Back', users_backoffice_tweets_path %>
+    <%= form.submit 'Save', class:"button is-link is-small" %>
+    <%= link_to 'Back', users_backoffice_tweets_path, class:'button is-danger is-small' %>
   </div>
 <% end %>

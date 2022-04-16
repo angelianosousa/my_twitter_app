@@ -10,16 +10,38 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'users_backoffice', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
     <%= render 'shared/header' %>
     <%= render 'shared/navbar' %>
 
-    <div class='container text-center'>
-      <%= yield %>
+    <div class='container'>
+      <% flash.each do |type, message| %>
+        <div class="notification is-success">
+          <button class='delete'></button>
+          <%= message %>
+        </div>
+      <% end %>
+      
+      <div class='columns is-multiline'>
+        <%= yield %>
+      </div>
     </div>
 
-    <%= javascript_pack_tag 'application' %>
+    <script>
+      $(document).ready(function() {
+
+        // Check for click events on the navbar burger icon
+        $(".navbar-burger").click(function() {
+
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            $(".navbar-burger").toggleClass("is-active");
+            $(".navbar-menu").toggleClass("is-active");
+
+        });
+      });
+    </script>
   </body>
 </html>

@@ -1,24 +1,24 @@
-# README
+# Project Twitter Clone
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is a personal challenge, in this moment i want test my skills for develop some platforms e populate my portfolio with projects with high value
 
-Things you may want to cover:
+# Dependencies
 
-* Ruby version
+* Ruby 2.7.5
+* Rails 6.0.4
+* Bootstrap 5.0
+* Bulma
+* PostgreSQL
 
-* System dependencies
+# How to Run
 
-* Configuration
+~~~ruby
+  bundle install
+  rails db:create db:migrate # For construct the project
+  rails db:seed # For populate database
+  rails s # To up the local server
+~~~
 
-* Database creation
+# Author
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Angeliano Sousa [Linkedin](https://www.linkedin.com/in/angeliano-sousa/)

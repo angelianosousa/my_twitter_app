@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   namespace :users_backoffice do
     resources :tweets
+    get 'users/timeline', to: 'users#timeline', as: 'timeline'
+    put 'users/profile_update', to: 'users#update', as: 'profile_update'
   end
   
   root to: 'users_backoffice/tweets#index'
