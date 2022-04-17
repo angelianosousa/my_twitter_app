@@ -1,5 +1,5 @@
 class UsersBackoffice::TweetsController < UsersBackofficeController
-  before_action :set_tweet, only: %i[ show edit update destroy ]
+  before_action :set_tweet, only: %i[ show edit update destroy like dislike ]
 
   # GET /tweets or /tweets.json
   def index
@@ -26,8 +26,8 @@ class UsersBackoffice::TweetsController < UsersBackofficeController
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to users_backoffice_tweet_path, notice: "Tweet was successfully created." }
-        format.json { render :show, status: :created, location: @tweet }
+        format.html { redirect_to users_backoffice_tweet_path(@tweet), notice: "Tweet was successfully created." }
+        format.json { render users_backoffice_tweet_path(@tweet), status: :created, location: @tweet }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
@@ -39,8 +39,8 @@ class UsersBackoffice::TweetsController < UsersBackofficeController
   def update
     respond_to do |format|
       if @tweet.update(tweet_params)
-        format.html { redirect_to users_backoffice_tweet_path, notice: "Tweet was successfully updated." }
-        format.json { render :show, status: :ok, location: @tweet }
+        format.html { redirect_to users_backoffice_tweet_path(@tweet), notice: "Tweet was successfully updated." }
+        format.json { render users_backoffice_tweet_path(@tweet), status: :ok, location: @tweet }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
@@ -54,6 +54,22 @@ class UsersBackoffice::TweetsController < UsersBackofficeController
 
     respond_to do |format|
       format.html { redirect_to users_backoffice_tweets_path, notice: "Tweet was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
+  def like
+    @tweet.like current_user.id
+    respond_to do |format|
+      format.html { redirect_to users_backoffice_tweets_path, notice: 'Tweet was liked.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def dislike
+    @tweet.dislike current_user.id
+    respond_to do |format|
+      format.html { redirect_to users_backoffice_tweets_path, notice: 'Tweet was disliked' }
       format.json { head :no_content }
     end
   end

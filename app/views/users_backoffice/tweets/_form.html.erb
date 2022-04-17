@@ -12,14 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :'What are you thinking ?', class:'label' %>
     <div class='control'>
-      <%= form.text_area :declaration, class:'textarea' %>
+      <%= form.text_area :declaration, class:'textarea', placeholder: 'What are you thinking ?' %>
     </div>
   </div>
 
   <div class="actions">
-    <%= form.submit 'Save', class:"button is-link is-small" %>
-    <%= link_to 'Back', users_backoffice_tweets_path, class:'button is-danger is-small' %>
+    <%= form.submit 'Publish', class:"button is-link is-small" %><br />
   </div>
 <% end %>

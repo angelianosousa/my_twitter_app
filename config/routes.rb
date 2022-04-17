@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   namespace :users_backoffice do
     resources :tweets
+    post 'tweets/:id/like', to: 'tweets#like', as: 'like_tweet'
+    post 'tweets/:id/dislike', to: 'tweets#dislike', as: 'dislike_tweet'
     get 'users/timeline', to: 'users#timeline', as: 'timeline'
     put 'users/profile_update', to: 'users#update', as: 'profile_update'
   end
