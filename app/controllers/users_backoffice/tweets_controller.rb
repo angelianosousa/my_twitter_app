@@ -3,7 +3,7 @@ class UsersBackoffice::TweetsController < UsersBackofficeController
 
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.all.includes(:user)
+    @tweets = Tweet.all.includes(:user).page(params[:page])
   end
 
   # GET /tweets/1 or /tweets/1.json

@@ -50,3 +50,5 @@ gem "rspec-rails", "~> 5.1"
 gem "factory_bot_rails", "~> 6.2"
 
 gem "devise", "~> 4.8"
+gem "kaminari"
+gem "kaminari-i18n"

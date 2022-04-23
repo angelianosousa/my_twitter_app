@@ -13,4 +13,9 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  paginates_per 10
+  
+  scope :_search_user, -> (user){ 
+    where('lower(fullname) LIKE ?', "%#{user.downcase}%")
+  }
 end

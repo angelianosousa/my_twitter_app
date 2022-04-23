@@ -13,9 +13,8 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'users_backoffice', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application' %>
 
-    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/cerulean/bulmaswatch.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/flatly/bulmaswatch.min.css">
   </head>
 
   <body>
@@ -35,16 +34,16 @@
 
     <script>
       $(document).ready(function() {
-
         // Check for click events on the navbar burger icon
         $(".navbar-burger").click(function() {
-
             // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
             $(".navbar-burger").toggleClass("is-active");
             $(".navbar-menu").toggleClass("is-active");
-
         });
       });
     </script>
   </body>
+
+  <%= javascript_pack_tag 'application' %>
+  <%= javascript_pack_tag 'users_backoffice' %>
 </html>

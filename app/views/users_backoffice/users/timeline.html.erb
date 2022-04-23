@@ -6,9 +6,9 @@
 
     <div class='columns'>
       <div class='column is-3'>
-        <div class='card text-center'>
+        <div class='card text-center' style='display:flex;justify-content:center;align-items:center;'>
           <div class='card-body'>
-            <figure class="image is-1by1" style='margin-bottom:15px;'>
+            <figure class="image is-6by4" style='margin-bottom:15px;'>
               <%= image_tag('https://via.placeholder.com/150C/', class:'is-rounded') %>
             </figure>
 
@@ -19,74 +19,48 @@
         </div>
       </div>
       <div class='column'>
+        <h2 class='title'>My information</h2>
         <div class='card'>
           <div class='card-body'>
-            <%= form_with url: users_backoffice_profile_update_path, method: :put, local: true do |f| %>
-
-              <div class="field">
-                <p class='control has-icons-left'>
-                  <%= f.text_field :fullname, autofocus: true, class:'input', placeholder:'Meu nome completo' %>
-                  <span class='icon is-small is-left'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                    </svg>
-                  </span>
-                </p>
-              </div>
-
-              <div class="field">
-                <p class="control has-icons-left">
-                  <%= f.email_field :email, autofocus: true, placeholder: "email@example.com", class:'input' %>
-                  <span class="icon is-small is-left">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                      <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
-                    </svg>
-                  </span>
-                </p>
-              </div>
-
-              <div class="field">
-                <p class="control has-icons-left">
-                  <%= f.password_field :current_password, autocomplete: "current-password", class:'input', placeholder:'Senha atual' %>
-                  <span class="icon is-small is-left">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
-                    </svg>
-                  </span>
-                </p>
-              </div>
-
-              <div class="field">
-                <p class="control has-icons-left has-icons-right">
-                  <%= f.password_field :password, autocomplete: "new-password", class:'input', placeholder:'Confirmação de Nova Senha' %>
-                  <% if @minimum_password_length %>
-                    <br />
-                    <em><%= @minimum_password_length %> characters minimum</em>
-                  <% end %>
-                  <span class="icon is-small is-left">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
-                    </svg>
-                  </span>
-                </p>
-              </div>
-
-              <div class="field">
-                <p class="control has-icons-left has-icons-right">
-                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'input', placeholder:'Confirmação de Nova Senha' %>
-                  <span class="icon is-small is-left">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
-                    </svg>
-                  </span>
-                </p>
-              </div>
-
-              <div class="actions">
-                <%= f.submit "Update", class:'button is-primary' %>
-                <%= link_to "Back", users_backoffice_tweets_path, class:'button is-danger' %>
-              </div>
-            <% end %>
+            <%= render 'edit_profile' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='columns'>
+      <div class='column'>
+        <div class='card text-center'>
+          <header class='card-header'>
+            <div class="tabs is-centered is-small is-mobile">
+              <ul>
+                <li class="is-active">
+                  <a>
+                    <span class="icon is-small"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <span>Followers</span> &nbsp;(<%= @user.followed_count %>)
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <span class="icon is-small"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <span>Following</span> &nbsp;(<%= @user.following_count %>)
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <span class="icon is-small"><i class="fa fa-comments" aria-hidden="true"></i></span>
+                    <span>Last Tweets</span> &nbsp;(<%= @user.tweets_count %>)
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <span class="icon is-small"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                    <span>Likes</span> &nbsp;(<%= @user.likes_count %>)
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </header>
+          <div class='card-body'>
 
           </div>
         </div>

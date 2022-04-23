@@ -1,6 +1,14 @@
 class UsersBackoffice::UsersController < UsersBackofficeController
   before_action :set_user
 
+  def search_for_user
+    if params[:user]
+      @users = User._search_user(params[:user]).order(fullname: :asc).page(params[:page])
+    else
+      @users = User.all.order(fullname: :asc).page(params[:page])
+    end
+  end
+
   def timeline
   end
 
@@ -19,7 +27,7 @@ class UsersBackoffice::UsersController < UsersBackofficeController
   end
 
   def user_params
-    params.permit(:fullname, :email)
+    params.require(:user).permit(:fullname, :email)
   end
   
 end

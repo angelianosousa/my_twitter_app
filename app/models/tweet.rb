@@ -1,6 +1,8 @@
 class Tweet < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   has_many :likes, dependent: :destroy
+
+  paginates_per 10
 
   validates :declaration, presence: true, length: { maximum: 200 }
 

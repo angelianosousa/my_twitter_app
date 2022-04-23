@@ -1,0 +1,38 @@
+<div class='columns is-multiline'>
+  <div class='column is-3'>
+    <%= render 'shared/sidebar'%>
+  </div>
+
+  <div class='column'>
+    <nav class='navbar is-transparent'>
+      <div class='navbar-start'>
+        <h4 class='title is-4'>Search For User</h4>
+      </div>
+    </nav>
+
+    <div class='card'>
+      <header class='card-header'>
+        <%= form_with url: '#', method: :get, local: true, class:'form-inline' do |form| %>
+          <div class='control has-icons-left'>
+            <%= form.search_field :user, class:'input is-small', placeholder:'Nome do usuário' %>
+            <span class='icon is-small is-left'><i class='fa fa-search'></i></span>
+          </div>
+          <%= form.submit 'Pesquisar', class:'is-hidden' %>
+        <% end %>
+      </header>
+      <div class='card-body'>
+        <% @users.each do |user| %>
+          <div class='card-content'>
+            <div class='d-flex'>
+              <figure class='image is-32x32'>
+                <%= image_tag('https://via.placeholder.com/150C/', class:'is-rounded') %>
+              </figure>&nbsp;
+              <strong><%= user.fullname %></strong>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%= paginate @users %>
+    </div>
+  </div>
+</div>

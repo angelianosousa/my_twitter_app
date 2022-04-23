@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     post 'tweets/:id/dislike', to: 'tweets#dislike', as: 'dislike_tweet'
     get 'users/timeline', to: 'users#timeline', as: 'timeline'
     put 'users/profile_update', to: 'users#update', as: 'profile_update'
+    get 'users/search', to: 'users#search_for_user'
   end
   
   root to: 'users_backoffice/tweets#index'
